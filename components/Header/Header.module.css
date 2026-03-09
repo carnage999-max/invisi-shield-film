@@ -1,0 +1,384 @@
+/* ===================================
+   HEADER — Neobrutalist + Glassmorphism
+   =================================== */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 80px;
+  background-color: rgba(6, 9, 14, 0.96);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 var(--spacing-xl);
+  z-index: 1000;
+  /* Neobrutalist structural bottom border */
+  border-bottom: 2px solid rgba(30, 107, 255, 0.45);
+  /* Subtle top highlight */
+  box-shadow: 0 1px 0 rgba(30, 107, 255, 0.1), 0 4px 24px rgba(0, 0, 0, 0.5);
+}
+
+/* ---- Logo ---- */
+.logoContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: var(--spacing-sm);
+  flex: 1;
+}
+
+.logoImage {
+  border-radius: var(--border-radius-sm);
+  object-fit: cover;
+  display: block;
+}
+
+.logoText {
+  font-family: var(--font-primary), sans-serif;
+  font-weight: 800;
+  font-size: 1.4rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  /* Gradient chrome text */
+  background: linear-gradient(
+    135deg,
+    #ffffff 0%,
+    #a8c8ff 40%,
+    #5593ff 70%,
+    #1E6BFF 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  filter: drop-shadow(0 0 8px rgba(30, 107, 255, 0.45));
+}
+
+/* ---- Desktop navigation ---- */
+.desktopNav {
+  display: none;
+  flex: 2;
+  justify-content: center;
+}
+
+.navList {
+  display: flex;
+  /* Wider spacing between nav items */
+  gap: calc(var(--spacing-lg) + 4px);
+  list-style: none;
+}
+
+.navItem {
+  position: relative;
+}
+
+.navLink {
+  color: rgba(184, 193, 204, 0.85);
+  font-weight: 700;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: var(--spacing-sm) 0;
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  transition: color 0.15s ease;
+  /* Neobrutalist hover indicator */
+  position: relative;
+}
+
+.navLink::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--color-blue);
+  transition: width 0.15s ease;
+}
+
+.navLink:hover {
+  color: var(--color-white);
+}
+
+.navLink:hover::after {
+  width: 100%;
+}
+
+/* ---- Dropdown ---- */
+.dropdown {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%) translateY(6px);
+  background: rgba(6, 9, 14, 0.98);
+  min-width: 210px;
+  /* Neobrutalist: sharp corner + hard border */
+  border-radius: var(--border-radius-sm);
+  border: 2px solid rgba(30, 107, 255, 0.35);
+  border-top: 2px solid var(--color-blue);
+  box-shadow: 4px 4px 0px rgba(30, 107, 255, 0.3);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.15s ease, transform 0.15s ease, visibility 0.15s;
+  padding: var(--spacing-sm) 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.navItem:hover .dropdown,
+.navLink:focus + .dropdown,
+.dropdown:focus-within {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+}
+
+.dropdownLink {
+  padding: 0.6rem var(--spacing-md);
+  color: var(--color-silver);
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 600;
+  transition: color 0.15s ease, background 0.15s ease, border-left 0.1s ease;
+  border-left: 2px solid transparent;
+}
+
+.dropdownLink:hover {
+  color: var(--color-white);
+  background-color: rgba(30, 107, 255, 0.08);
+  border-left-color: var(--color-blue-bright);
+}
+
+/* ---- CTA actions ---- */
+.actions {
+  flex: 1;
+  display: none;
+  justify-content: flex-end;
+}
+
+/* ---- Mobile toggle ---- */
+.mobileToggle {
+  display: flex;
+  color: var(--color-white);
+  z-index: 1001;
+  padding: 6px;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--border-radius-sm);
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+
+.mobileToggle:hover {
+  border-color: rgba(30, 107, 255, 0.5);
+  background: rgba(30, 107, 255, 0.08);
+}
+
+/* ---- Mobile Drawer ---- */
+.mobileDrawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 78%;
+  max-width: 400px;
+  height: 100vh;
+  z-index: 1000;
+  padding: 90px var(--spacing-lg) var(--spacing-lg);
+  overflow-y: auto;
+  transform: translateX(100%);
+  transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  /* Neobrutalist: hard left border */
+  border-left: 3px solid rgba(30, 107, 255, 0.5);
+  box-shadow: -6px 0 0px rgba(30, 107, 255, 0.15), -20px 0 60px rgba(0, 0, 0, 0.8);
+
+  /* Dark shattered-glass background */
+  background-color: #060910;
+  background-image:
+    radial-gradient(ellipse 80px 80px at 82% 22%, rgba(30, 107, 255, 0.35) 0%, transparent 70%),
+    linear-gradient(225deg, transparent 48%, rgba(30, 107, 255, 0.25) 49%, rgba(255, 255, 255, 0.12) 50%, transparent 51%),
+    linear-gradient(308deg, transparent 44%, rgba(30, 107, 255, 0.15) 45%, rgba(255, 255, 255, 0.08) 46%, transparent 47%),
+    linear-gradient(267deg, transparent 60%, rgba(30, 107, 255, 0.1) 61%, rgba(255, 255, 255, 0.06) 62%, transparent 63%),
+    linear-gradient(165deg, transparent 54%, rgba(30, 107, 255, 0.12) 55%, rgba(255, 255, 255, 0.07) 56%, transparent 57%),
+    linear-gradient(244deg, transparent 70%, rgba(255, 255, 255, 0.05) 71%, transparent 72%),
+    linear-gradient(195deg, transparent 63%, rgba(255, 255, 255, 0.04) 64%, transparent 65%),
+    radial-gradient(ellipse 240px 240px at 85% 25%, rgba(11, 31, 58, 0.5) 0%, transparent 75%),
+    radial-gradient(ellipse 100% 100% at 50% 50%, rgba(11, 31, 58, 0.3) 0%, rgba(4, 9, 18, 0.95) 100%);
+}
+
+.mobileDrawer.open {
+  transform: translateX(0);
+}
+
+/* ---- Backdrop ---- */
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.75);
+  z-index: 999;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.backdrop.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* ---- Mobile close button ---- */
+.mobileClose {
+  position: absolute;
+  top: 1.25rem;
+  right: 1.25rem;
+  color: var(--color-white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.45rem;
+  /* Neobrutalist square close button */
+  border-radius: var(--border-radius-sm);
+  border: 2px solid rgba(30, 107, 255, 0.4);
+  background: rgba(30, 107, 255, 0.08);
+  transition: all 0.15s ease;
+  box-shadow: 2px 2px 0px rgba(30, 107, 255, 0.3);
+}
+
+.mobileClose:hover {
+  background: rgba(30, 107, 255, 0.18);
+  border-color: rgba(30, 107, 255, 0.7);
+  box-shadow: 3px 3px 0px rgba(30, 107, 255, 0.5);
+}
+
+/* ---- Mobile nav links ---- */
+.mobileNavList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+  list-style: none;
+}
+
+/* Row holds the Link label on the left + the chevron button on the right */
+.mobileNavLinkRow {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid rgba(30, 107, 255, 0.15);
+}
+
+.mobileNavLink {
+  display: block;
+  flex: 1;
+  font-size: 0.8rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--color-white);
+  padding: var(--spacing-sm) var(--spacing-sm);
+  transition: color 0.15s ease, background 0.15s ease;
+}
+
+.mobileNavLink:hover {
+  color: var(--color-blue-bright);
+  background: rgba(30, 107, 255, 0.04);
+}
+
+/* Chevron-only toggle button */
+.mobileChevronBtn {
+  color: var(--color-silver);
+  padding: var(--spacing-sm);
+  display: flex;
+  align-items: center;
+  border-left: 1px solid rgba(30, 107, 255, 0.15);
+  transition: color 0.15s ease, background 0.15s ease;
+}
+
+.mobileChevronBtn:hover {
+  color: var(--color-blue-bright);
+  background: rgba(30, 107, 255, 0.08);
+}
+
+.mobileSubList {
+  list-style: none;
+  padding-left: var(--spacing-md);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+  margin-top: var(--spacing-xs);
+  overflow: hidden;
+  /* Left border on sub-list */
+  border-left: 2px solid rgba(30, 107, 255, 0.3);
+}
+
+.mobileSubLink {
+  color: rgba(184, 193, 204, 0.7);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 600;
+  padding: 0.4rem var(--spacing-sm);
+  transition: color 0.15s ease;
+  display: block;
+}
+
+.mobileSubLink:hover {
+  color: var(--color-blue-bright);
+}
+
+/* ---- Mobile contact section ---- */
+.mobileContactSection {
+  margin-top: var(--spacing-2xl);
+  padding-top: var(--spacing-lg);
+  border-top: 2px solid rgba(30, 107, 255, 0.25);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.mobileContactTitle {
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: rgba(30, 107, 255, 0.7);
+  font-family: var(--font-primary), sans-serif;
+  font-weight: 800;
+}
+
+.mobileContactItem {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-sm);
+  color: var(--color-silver);
+  font-size: 0.85rem;
+  line-height: 1.5;
+}
+
+.mobileContactItem a {
+  color: rgba(184, 193, 204, 0.75);
+  transition: color 0.15s ease;
+}
+
+.mobileContactItem a:hover {
+  color: var(--color-blue-bright);
+}
+
+.mobileContactIcon {
+  flex-shrink: 0;
+  color: var(--color-blue-bright);
+  margin-top: 2px;
+}
+
+/* ---- Desktop breakpoint ---- */
+@media (min-width: 1024px) {
+  .desktopNav, .actions {
+    display: flex;
+  }
+  .mobileToggle {
+    display: none;
+  }
+}

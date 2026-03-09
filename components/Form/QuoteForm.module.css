@@ -1,0 +1,103 @@
+/* ===================================
+   QUOTE FORM
+   Neobrutalist
+   =================================== */
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+  background: rgba(11, 22, 40, 0.9);
+  padding: var(--spacing-2xl);
+  border-radius: var(--border-radius-md);
+  border: 2px solid rgba(30, 107, 255, 0.25);
+  /* Hard neobrutalist offset shadow */
+  box-shadow: 6px 6px 0px rgba(30, 107, 255, 0.3);
+}
+
+.row {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+@media (min-width: 640px) {
+  .row {
+    flex-direction: row;
+  }
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+  flex: 1;
+}
+
+.label {
+  font-size: 0.75rem;
+  color: var(--color-silver);
+  font-family: var(--font-primary);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.label span {
+  color: var(--color-blue-bright);
+}
+
+.input,
+.textarea,
+.select {
+  width: 100%;
+  padding: var(--spacing-md);
+  /* Sharp neobrutalist corners */
+  border-radius: var(--border-radius-sm);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  background-color: rgba(0, 0, 0, 0.4);
+  color: var(--color-white);
+  font-family: var(--font-secondary);
+  font-size: 1rem;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.input:focus,
+.textarea:focus,
+.select:focus {
+  outline: none;
+  border-color: var(--color-blue);
+  box-shadow: 3px 3px 0px rgba(30, 107, 255, 0.4);
+}
+
+.select option {
+  background-color: #0B1F3A;
+}
+
+.textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+/* ---- Status messages ---- */
+.statusMessage {
+  padding: var(--spacing-md);
+  border-radius: var(--border-radius-sm);
+  font-weight: 700;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  text-align: center;
+  border-left: 4px solid;
+}
+
+.statusMessage.success {
+  background-color: rgba(0, 212, 100, 0.06);
+  color: #00D464;
+  border-color: #00D464;
+}
+
+.statusMessage.error {
+  background-color: rgba(30, 107, 255, 0.06);
+  color: var(--color-blue-bright);
+  border-color: var(--color-blue-bright);
+}

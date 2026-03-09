@@ -1,0 +1,55 @@
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.75rem;
+  font-family: var(--font-primary), sans-serif;
+  font-weight: 700;
+  font-size: 0.9rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border-radius: var(--border-radius-pill);
+  transition: all 0.2s cubic-bezier(0.25, 0.8, 0.25, 1);
+  position: relative;
+}
+
+/* PRIMARY: solid blue with hard neobrutalist offset shadow */
+.primary {
+  background: var(--color-blue);
+  color: var(--color-white);
+  border: 2px solid rgba(255, 255, 255, 0.25);
+  box-shadow: var(--shadow-hard);
+}
+
+.primary:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0px rgba(30, 107, 255, 0.9);
+  background: var(--color-blue-bright);
+}
+
+.primary:active {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0px rgba(30, 107, 255, 0.6);
+}
+
+/* SECONDARY: outlined glass pill */
+.secondary {
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--color-white);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  box-shadow: var(--shadow-hard-white);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.secondary:hover {
+  transform: translate(-2px, -2px);
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.5);
+  box-shadow: 6px 6px 0px rgba(255, 255, 255, 0.2);
+}
+
+.secondary:active {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0px rgba(255, 255, 255, 0.1);
+}
