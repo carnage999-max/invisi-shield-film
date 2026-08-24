@@ -60,6 +60,18 @@ export const Footer = () => {
             <Link href="/privacy" className={styles.link}>Privacy Policy</Link>
             <Link href="/terms" className={styles.link}>Terms of Service</Link>
           </div>
+          <p>
+            Part of the{' '}
+            <a
+              href="https://se7eninc.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.link}
+            >
+              Se7en
+            </a>{' '}
+            family of companies.
+          </p>
         </div>
       </div>
     </footer>
