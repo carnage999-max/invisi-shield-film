@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { Inter, Roboto } from 'next/font/google';
+import Script from 'next/script';
 import './globals.css';
 import { Header } from '@/components/Header/Header';
 import { Footer } from '@/components/Footer/Footer';
@@ -32,6 +33,11 @@ export default function RootLayout({
         <Header />
         <main>{children}</main>
         <Footer />
+        <Script
+          src="https://now-hiring-eta.vercel.app/widget.js"
+          data-icon="ShieldCheck"
+          strategy="afterInteractive"
+        />
       </body>
     </html>
   );
