@@ -6,7 +6,7 @@ export async function POST(req: Request) {
     const resend = new Resend(process.env.RESEND_API_KEY || 're_123');
     const { name, email, phone, organisation, application, message } = await req.json();
 
-    const fromAddress = process.env.EMAIL_FROM || 'InvisiShield ArmorFilm™ <onboarding@resend.dev>';
+    const fromAddress = process.env.EMAIL_FROM || 'InvisiShield ArmorFilm™ <info@se7eninc.com>';
     const toAddresses = (process.env.EMAIL_TO || 'info@invisishieldfilm.com')
       .split(',')
       .map((e) => e.trim())
